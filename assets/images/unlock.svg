@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20.781" height="22.877" viewBox="0 0 20.781 22.877">
+  <g id="Group_12503" data-name="Group 12503" transform="translate(-53.5 -232.997)">
+    <g id="Icon_feather-unlock" data-name="Icon feather-unlock" transform="translate(49.3 231.008)">
+      <path id="Path_13295" data-name="Path 13295" d="M6.587,16.5H21.195a2.087,2.087,0,0,1,2.087,2.087v7.3a2.087,2.087,0,0,1-2.087,2.087H6.587A2.087,2.087,0,0,1,4.5,25.891v-7.3A2.087,2.087,0,0,1,6.587,16.5Z" transform="translate(0.7 -4.112)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Path_13296" data-name="Path 13296" d="M10.5,12.388V8.215A5.217,5.217,0,0,1,20.83,7.171" transform="translate(-1.746)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+    <g id="Group_12502" data-name="Group 12502" transform="translate(4 -0.5)">
+      <circle id="Ellipse_5" data-name="Ellipse 5" cx="1" cy="1" r="1" transform="translate(56 249)" fill="#fff"/>
+      <circle id="Ellipse_6" data-name="Ellipse 6" cx="1" cy="1" r="1" transform="translate(59 249)" fill="#fff"/>
+      <circle id="Ellipse_7" data-name="Ellipse 7" cx="1" cy="1" r="1" transform="translate(62 249)" fill="#fff"/>
+    </g>
+  </g>
+</svg>
