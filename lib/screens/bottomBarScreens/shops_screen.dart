@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:scheduling_app/screens/bottomBarScreens/create_work_space_screen.dart';
+import 'package:scheduling_app/screens/bottomBarScreens/new_admin_screen.dart';
 import 'package:scheduling_app/styles/colors.dart';
 
 class ShopsScreen extends StatelessWidget {
@@ -145,14 +146,19 @@ class ShopsScreen extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 20),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.settings,
-                                    color: Colors.white,
-                                  ),
-                                  Text('    Preferences')
-                                ],
+                              GestureDetector(
+                                onTap: () {
+                                  Get.to(NewAdminScreen());
+                                },
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.settings,
+                                      color: Colors.white,
+                                    ),
+                                    Text('    Preferences')
+                                  ],
+                                ),
                               ),
                               SizedBox(height: 20),
                               Row(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:scheduling_app/controllers/wd.dart';
+import 'package:scheduling_app/week_calenders/dailyItem_class_square_shape.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 typedef OnDateSelected = void Function(DateTime?);

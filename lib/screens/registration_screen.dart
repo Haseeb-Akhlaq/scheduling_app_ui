@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:scheduling_app/screens/registration_screen_2.dart';
 import 'package:scheduling_app/styles/colors.dart';
+
+import 'bottomBarScreens/bottom_bar.dart';
 
 class RegistrationScreen extends StatelessWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -15,6 +16,9 @@ class RegistrationScreen extends StatelessWidget {
     final double width = Get.width;
 
     var checkValue = true.obs;
+
+    var showPassword = false.obs;
+    var showConfirmPassword = false.obs;
 
     return SafeArea(
       child: Scaffold(
@@ -105,6 +109,96 @@ class RegistrationScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
+                          ),
+                          SizedBox(height: height * 0.04),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('First Name'),
+                              SizedBox(height: height * 0.005),
+                              TextField(
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                                decoration: InputDecoration(
+                                  isCollapsed: true,
+                                  contentPadding: EdgeInsets.only(top: 5),
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColors.textLight, width: 0.2),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColors.textLight, width: 0.5),
+                                  ),
+                                  border: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColors.textLight, width: 0.5),
+                                  ),
+                                  prefixIconConstraints: BoxConstraints(
+                                    minWidth: 25,
+                                    minHeight: 35,
+                                  ),
+                                  prefixIcon: Transform.scale(
+                                    scale: 0.7,
+                                    child: SvgPicture.asset(
+                                      'assets/images/user.svg',
+                                    ),
+                                  ),
+                                  hintText: "    Jhone",
+                                  hintStyle: TextStyle(
+                                    fontSize: 13,
+                                    color: AppColors.textLight,
+                                    fontFamily: 'pop-light',
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: height * 0.04),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Last Name'),
+                              SizedBox(height: height * 0.005),
+                              TextField(
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                                decoration: InputDecoration(
+                                  isCollapsed: true,
+                                  contentPadding: EdgeInsets.only(top: 5),
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColors.textLight, width: 0.2),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColors.textLight, width: 0.5),
+                                  ),
+                                  border: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColors.textLight, width: 0.5),
+                                  ),
+                                  prefixIconConstraints: BoxConstraints(
+                                    minWidth: 25,
+                                    minHeight: 35,
+                                  ),
+                                  prefixIcon: Transform.scale(
+                                    scale: 0.7,
+                                    child: SvgPicture.asset(
+                                      'assets/images/user.svg',
+                                    ),
+                                  ),
+                                  hintText: "    Doe",
+                                  hintStyle: TextStyle(
+                                    fontSize: 13,
+                                    color: AppColors.textLight,
+                                    fontFamily: 'pop-light',
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(height: height * 0.04),
                           Column(
@@ -202,14 +296,141 @@ class RegistrationScreen extends StatelessWidget {
                             children: [
                               Text('Password'),
                               SizedBox(height: height * 0.005),
+                              Obx(
+                                () => TextField(
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                  obscureText: !showPassword.value,
+                                  decoration: InputDecoration(
+                                    isCollapsed: true,
+                                    contentPadding: EdgeInsets.only(top: 15),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: AppColors.textLight,
+                                          width: 0.2),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: AppColors.textLight,
+                                          width: 0.5),
+                                    ),
+                                    border: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: AppColors.textLight,
+                                          width: 0.5),
+                                    ),
+                                    prefixIconConstraints: BoxConstraints(
+                                      minWidth: 25,
+                                      minHeight: 35,
+                                    ),
+                                    suffixIcon: GestureDetector(
+                                      onTap: () {
+                                        showPassword.value =
+                                            !showPassword.value;
+                                      },
+                                      child: Icon(
+                                        showPassword.isTrue
+                                            ? Icons.visibility_outlined
+                                            : Icons.visibility_off_outlined,
+                                        color: AppColors.textLight,
+                                        size: 20,
+                                      ),
+                                    ),
+                                    prefixIcon: Transform.scale(
+                                      scale: 0.6,
+                                      child: SvgPicture.asset(
+                                        'assets/images/lock.svg',
+                                      ),
+                                    ),
+                                    hintText: "    ******************",
+                                    hintStyle: TextStyle(
+                                      fontSize: 13,
+                                      color: AppColors.textLight,
+                                      fontFamily: 'pop-light',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: height * 0.04),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Confirm Password'),
+                              SizedBox(height: height * 0.005),
+                              Obx(
+                                () => TextField(
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                  obscureText: !showConfirmPassword.value,
+                                  decoration: InputDecoration(
+                                    isCollapsed: true,
+                                    contentPadding: EdgeInsets.only(top: 15),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: AppColors.textLight,
+                                          width: 0.2),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: AppColors.textLight,
+                                          width: 0.5),
+                                    ),
+                                    border: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: AppColors.textLight,
+                                          width: 0.5),
+                                    ),
+                                    prefixIconConstraints: BoxConstraints(
+                                      minWidth: 25,
+                                      minHeight: 35,
+                                    ),
+                                    suffixIcon: GestureDetector(
+                                      onTap: () {
+                                        showConfirmPassword.value =
+                                            !showConfirmPassword.value;
+                                      },
+                                      child: Icon(
+                                        showConfirmPassword.isTrue
+                                            ? Icons.visibility_outlined
+                                            : Icons.visibility_off_outlined,
+                                        color: AppColors.textLight,
+                                        size: 20,
+                                      ),
+                                    ),
+                                    prefixIcon: Transform.scale(
+                                      scale: 0.6,
+                                      child: SvgPicture.asset(
+                                        'assets/images/lock.svg',
+                                      ),
+                                    ),
+                                    hintText: "    ******************",
+                                    hintStyle: TextStyle(
+                                      fontSize: 13,
+                                      color: AppColors.textLight,
+                                      fontFamily: 'pop-light',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: height * 0.04),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Gender'),
+                              SizedBox(height: height * 0.005),
                               TextField(
                                 style: TextStyle(
                                   color: Colors.white,
                                 ),
-                                obscureText: true,
                                 decoration: InputDecoration(
                                   isCollapsed: true,
-                                  contentPadding: EdgeInsets.only(top: 15),
+                                  contentPadding: EdgeInsets.only(top: 5),
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                         color: AppColors.textLight, width: 0.2),
@@ -226,18 +447,13 @@ class RegistrationScreen extends StatelessWidget {
                                     minWidth: 25,
                                     minHeight: 35,
                                   ),
-                                  suffixIcon: Icon(
-                                    Icons.visibility_outlined,
-                                    color: AppColors.textLight,
-                                    size: 20,
-                                  ),
                                   prefixIcon: Transform.scale(
                                     scale: 0.6,
                                     child: SvgPicture.asset(
-                                      'assets/images/lock.svg',
+                                      'assets/images/gender.svg',
                                     ),
                                   ),
-                                  hintText: "    ******************",
+                                  hintText: "    Male",
                                   hintStyle: TextStyle(
                                     fontSize: 13,
                                     color: AppColors.textLight,
@@ -251,7 +467,7 @@ class RegistrationScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Confirm Password'),
+                              Text('Date of Birth'),
                               SizedBox(height: height * 0.005),
                               TextField(
                                 style: TextStyle(
@@ -260,7 +476,7 @@ class RegistrationScreen extends StatelessWidget {
                                 obscureText: true,
                                 decoration: InputDecoration(
                                   isCollapsed: true,
-                                  contentPadding: EdgeInsets.only(top: 15),
+                                  contentPadding: EdgeInsets.only(top: 5),
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                         color: AppColors.textLight, width: 0.2),
@@ -277,18 +493,13 @@ class RegistrationScreen extends StatelessWidget {
                                     minWidth: 25,
                                     minHeight: 35,
                                   ),
-                                  suffixIcon: Icon(
-                                    Icons.visibility_outlined,
-                                    color: AppColors.textLight,
-                                    size: 20,
-                                  ),
                                   prefixIcon: Transform.scale(
                                     scale: 0.6,
                                     child: SvgPicture.asset(
-                                      'assets/images/lock.svg',
+                                      'assets/images/birthday.svg',
                                     ),
                                   ),
-                                  hintText: "    ******************",
+                                  hintText: "    10 Jan 2000",
                                   hintStyle: TextStyle(
                                     fontSize: 13,
                                     color: AppColors.textLight,
@@ -335,7 +546,7 @@ class RegistrationScreen extends StatelessWidget {
                           SizedBox(height: height * 0.04),
                           GestureDetector(
                             onTap: () {
-                              Get.to(RegistrationScreen2());
+                              Get.to(BottomBarPage());
                             },
                             child: Container(
                               alignment: Alignment.center,

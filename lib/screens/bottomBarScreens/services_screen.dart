@@ -137,30 +137,37 @@ class ServicesScreen extends StatelessWidget {
                                   mainAxisSpacing: 10),
                           itemCount: 10,
                           itemBuilder: (BuildContext ctx, index) {
-                            return Container(
-                              alignment: Alignment.center,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset('assets/images/24hours.svg'),
-                                  SizedBox(height: 14),
-                                  Text(
-                                    'Dummy Service',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              decoration: BoxDecoration(
-                                  color: AppColors.backgroundTiles,
-                                  borderRadius: BorderRadius.circular(15)),
-                            );
+                            return ServicesContainer();
                           }),
                     )),
               )
             ],
           )),
+    );
+  }
+}
+
+class ServicesContainer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset('assets/images/24hours.svg'),
+          SizedBox(height: 14),
+          Text(
+            'Dummy Service',
+            style: TextStyle(
+              fontSize: 12,
+            ),
+          )
+        ],
+      ),
+      decoration: BoxDecoration(
+          color: AppColors.backgroundTiles,
+          borderRadius: BorderRadius.circular(15)),
     );
   }
 }

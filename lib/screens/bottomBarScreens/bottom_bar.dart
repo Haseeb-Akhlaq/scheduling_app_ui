@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:scheduling_app/controllers/bottom_bar_controller.dart';
+import 'package:scheduling_app/screens/bottomBarScreens/new_appointment_screen.dart';
 import 'package:scheduling_app/styles/colors.dart';
 
 class BottomBarPage extends StatelessWidget {
@@ -65,17 +66,22 @@ class BottomBarPage extends StatelessWidget {
                               : Color(0xff707070),
                         ),
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.mainRed,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                            size: 28,
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(NewAppointmentScreen());
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.mainRed,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: 28,
+                            ),
                           ),
                         ),
                       ),

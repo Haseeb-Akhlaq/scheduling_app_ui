@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import 'package:scheduling_app/screens/bottomBarScreens/add_service_provider_screen.dart';
 import 'package:scheduling_app/styles/colors.dart';
 
-import 'create_work_space_screen_2.dart';
+import 'create_schedule_screen.dart';
 
-class CreateWorkSpaceScreen extends StatelessWidget {
+class CreateWorkSpaceScreen2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double height = Get.height;
@@ -73,7 +73,7 @@ class CreateWorkSpaceScreen extends StatelessWidget {
               Positioned(
                 bottom: 0,
                 child: Container(
-                  height: height * 0.82,
+                  height: height * 0.84,
                   width: width,
                   decoration: BoxDecoration(
                       color: AppColors.background,
@@ -89,7 +89,7 @@ class CreateWorkSpaceScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Title',
+                              'Shop Title',
                               style: TextStyle(
                                 fontSize: 18,
                               ),
@@ -99,20 +99,30 @@ class CreateWorkSpaceScreen extends StatelessWidget {
                                 color: Colors.white,
                               ),
                               decoration: InputDecoration(
-                                contentPadding: EdgeInsets.all(0),
+                                isCollapsed: true,
+                                contentPadding: EdgeInsets.only(top: 15),
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: AppColors.textLight, width: 0.3),
+                                      color: Colors.white, width: 0.5),
                                 ),
                                 focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: AppColors.textLight, width: 0.3),
+                                      color: Colors.white, width: 0.5),
                                 ),
                                 border: UnderlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: AppColors.textLight, width: 0.3),
+                                      color: Colors.white, width: 0.5),
                                 ),
-                                hintText: "Workspace",
+                                prefixIconConstraints: BoxConstraints(
+                                  minWidth: 25,
+                                  minHeight: 35,
+                                ),
+                                suffixIcon: Icon(
+                                  Icons.location_on,
+                                  color: Colors.white,
+                                  size: 24,
+                                ),
+                                hintText: "Shop",
                                 hintStyle: TextStyle(
                                   fontSize: 13,
                                   color: AppColors.textLight,
@@ -123,156 +133,26 @@ class CreateWorkSpaceScreen extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: height * 0.035),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Detail',
-                              style: TextStyle(
-                                fontSize: 18,
-                              ),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: AppColors.backgroundTiles,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                CreateWorkSpaceTile(),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: Divider(
+                                    color: AppColors.textLight,
+                                  ),
+                                ),
+                                CreateWorkSpaceTile(),
+                              ],
                             ),
-                            TextField(
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.all(0),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: AppColors.textLight, width: 0.3),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: AppColors.textLight, width: 0.3),
-                                ),
-                                border: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: AppColors.textLight, width: 0.3),
-                                ),
-                                hintText: "xyz ...",
-                                hintStyle: TextStyle(
-                                  fontSize: 13,
-                                  color: AppColors.textLight,
-                                  fontFamily: 'pop-light',
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: height * 0.035),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Shop Name',
-                              style: TextStyle(
-                                fontSize: 18,
-                              ),
-                            ),
-                            TextField(
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.all(0),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: AppColors.textLight, width: 0.3),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: AppColors.textLight, width: 0.3),
-                                ),
-                                border: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: AppColors.textLight, width: 0.3),
-                                ),
-                                hintText: "xyz ...",
-                                hintStyle: TextStyle(
-                                  fontSize: 13,
-                                  color: AppColors.textLight,
-                                  fontFamily: 'pop-light',
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: height * 0.035),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Location',
-                              style: TextStyle(
-                                fontSize: 18,
-                              ),
-                            ),
-                            TextField(
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.all(0),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: AppColors.textLight, width: 0.3),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: AppColors.textLight, width: 0.3),
-                                ),
-                                border: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: AppColors.textLight, width: 0.3),
-                                ),
-                                hintText: "xyz ...",
-                                hintStyle: TextStyle(
-                                  fontSize: 13,
-                                  color: AppColors.textLight,
-                                  fontFamily: 'pop-light',
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: height * 0.035),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Number of Providers',
-                              style: TextStyle(
-                                fontSize: 18,
-                              ),
-                            ),
-                            TextField(
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.all(0),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: AppColors.textLight, width: 0.3),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: AppColors.textLight, width: 0.3),
-                                ),
-                                border: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: AppColors.textLight, width: 0.3),
-                                ),
-                                hintText: "xyz ...",
-                                hintStyle: TextStyle(
-                                  fontSize: 13,
-                                  color: AppColors.textLight,
-                                  fontFamily: 'pop-light',
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                         SizedBox(height: height * 0.035),
                         GestureDetector(
@@ -296,10 +176,108 @@ class CreateWorkSpaceScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(height: height * 0.09),
+                        SizedBox(height: height * 0.02),
+                        ListTile(
+                          title: Text(
+                            'Jhone Doe',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 13,
+                            ),
+                          ),
+                          subtitle: Text(
+                            'Shop Owner',
+                            style: TextStyle(
+                              color: AppColors.textLight,
+                              fontSize: 12,
+                            ),
+                          ),
+                          minLeadingWidth: 0,
+                          leading: CircleAvatar(
+                            radius: 29,
+                            backgroundImage: AssetImage(
+                              'assets/images/girl2.png',
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: height * 0.035),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Services',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                            TextField(
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.all(0),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.white, width: 0.5),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.white, width: 0.5),
+                                ),
+                                border: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.white, width: 0.5),
+                                ),
+                                hintText: "xyz ...",
+                                hintStyle: TextStyle(
+                                  fontSize: 13,
+                                  color: AppColors.textLight,
+                                  fontFamily: 'pop-light',
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: height * 0.035),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ServicesWidget(
+                              height: height,
+                              isSelected: false,
+                            ),
+                            ServicesWidget(
+                              height: height,
+                              isSelected: true,
+                            ),
+                            ServicesWidget(
+                              height: height,
+                              isSelected: false,
+                            )
+                          ],
+                        ),
+                        SizedBox(height: height * 0.025),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ServicesWidget(
+                              height: height,
+                              isSelected: false,
+                            ),
+                            ServicesWidget(
+                              height: height,
+                              isSelected: false,
+                            ),
+                            ServicesWidget(
+                              height: height,
+                              isSelected: false,
+                            )
+                          ],
+                        ),
+                        SizedBox(height: height * 0.07),
                         GestureDetector(
                           onTap: () {
-                            Get.to(CreateWorkSpaceScreen2());
+                            Get.to(CreateScheduleScreen());
                           },
                           child: Container(
                             alignment: Alignment.center,
@@ -313,13 +291,13 @@ class CreateWorkSpaceScreen extends StatelessWidget {
                                 horizontal: 10,
                               ),
                               child: Text(
-                                'Make Workspace',
+                                'Request Workspace',
                                 style: TextStyle(fontSize: height * 0.020),
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(height: height * 0.035),
+                        SizedBox(height: height * 0.03),
                       ],
                     ),
                   ),
@@ -327,6 +305,77 @@ class CreateWorkSpaceScreen extends StatelessWidget {
               )
             ],
           )),
+    );
+  }
+}
+
+class CreateWorkSpaceTile extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(
+        'Dudung Sokmati',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: Get.height * 0.020,
+        ),
+      ),
+      subtitle: Text(
+        'USA',
+        style: TextStyle(
+          color: AppColors.textLight,
+          fontSize: Get.height * 0.019,
+        ),
+      ),
+      minLeadingWidth: 0,
+      trailing: Container(
+        decoration: BoxDecoration(
+            color: AppColors.mainRed, borderRadius: BorderRadius.circular(25)),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+          child: Text(
+            'Choose',
+            style: TextStyle(
+              fontSize: Get.height * 0.018,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ServicesWidget extends StatelessWidget {
+  const ServicesWidget({
+    required this.height,
+    required this.isSelected,
+  });
+
+  final double height;
+  final bool isSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      width: Get.width * 0.27,
+      decoration: BoxDecoration(
+          color: AppColors.backgroundTiles,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(
+            color: isSelected ? AppColors.mainRed : AppColors.backgroundTiles,
+          )),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
+        child: Text(
+          'Services',
+          style: TextStyle(
+            fontSize: height * 0.016,
+            color: isSelected ? AppColors.mainRed : Colors.white,
+          ),
+        ),
+      ),
     );
   }
 }

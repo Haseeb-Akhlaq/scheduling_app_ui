@@ -78,7 +78,7 @@ class DayItem extends StatelessWidget {
               dayNumber.toString(),
               style: TextStyle(
                 color: activeDayColor ?? Colors.white,
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
                 height: 0.8,
               ),

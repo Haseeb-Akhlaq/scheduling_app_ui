@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scheduling_app/models/tileModel.dart';
+import 'package:scheduling_app/screens/bottomBarScreens/dash_board_screen_2.dart';
 import 'package:scheduling_app/styles/colors.dart';
+import 'package:scheduling_app/week_calenders/weekly_calender.dart';
 import 'package:scheduling_app/widgets/hometile.dart';
-
-import 'daily_tab_extend.dart';
 
 class DailyTab extends StatelessWidget {
   const DailyTab({Key? key}) : super(key: key);
@@ -52,23 +52,22 @@ class DailyTab extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 15),
-          // Container(
-          //   child: Padding(
-          //     padding: const EdgeInsets.only(left: 20),
-          //     child: CalendarTimeline(
-          //       initialDate: DateTime(2020, 4, 20),
-          //       firstDate: DateTime(2019, 1, 15),
-          //       lastDate: DateTime(2020, 11, 20),
-          //       onDateSelected: (date) => print(date),
-          //       leftMargin: 10,
-          //       dayColor: Colors.white,
-          //       activeDayColor: Colors.white,
-          //       activeBackgroundDayColor:
-          //           AppColors.mainRed,
-          //       locale: 'en_ISO',
-          //     ),
-          //   ),
-          // ),
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: CalendarTimeline(
+                initialDate: DateTime(2020, 4, 20),
+                firstDate: DateTime(2019, 1, 15),
+                lastDate: DateTime(2020, 11, 20),
+                onDateSelected: (date) => print(date),
+                leftMargin: 10,
+                dayColor: Colors.white,
+                activeDayColor: Colors.white,
+                activeBackgroundDayColor: AppColors.mainRed,
+                locale: 'en_ISO',
+              ),
+            ),
+          ),
           SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -114,7 +113,7 @@ class DailyTab extends StatelessWidget {
                 SizedBox(height: 15),
                 ...homeTilesList.map((e) => GestureDetector(
                       onTap: () {
-                        Get.to(DailyTabExtend());
+                        Get.to(DashBoardScreen2());
                       },
                       child: Column(
                         children: [

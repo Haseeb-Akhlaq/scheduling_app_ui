@@ -3,34 +3,44 @@ import 'package:get/get.dart';
 import 'package:scheduling_app/models/serviceProviderModel.dart';
 import 'package:scheduling_app/styles/colors.dart';
 
-class AddServiceProviderScreen extends StatelessWidget {
+class AddServiceProviderScreen extends StatefulWidget {
+  @override
+  _AddServiceProviderScreenState createState() =>
+      _AddServiceProviderScreenState();
+}
+
+class _AddServiceProviderScreenState extends State<AddServiceProviderScreen> {
+  List services = [
+    ServiceProvider(
+        name: 'Jhone Doe', pic: 'assets/images/girl2.png', highLighted: false),
+    ServiceProvider(
+        name: 'Jhone Doe', pic: 'assets/images/girl2.png', highLighted: true),
+    ServiceProvider(
+        name: 'Jhone Doe', pic: 'assets/images/girl2.png', highLighted: false),
+    ServiceProvider(
+        name: 'Jhone Doe', pic: 'assets/images/girl2.png', highLighted: false),
+    ServiceProvider(
+        name: 'Dudung Sokmati',
+        pic: 'assets/images/girl2.png',
+        highLighted: false),
+    ServiceProvider(
+        name: 'Dudung Sokmati',
+        pic: 'assets/images/girl2.png',
+        highLighted: false),
+  ];
+
+  changeShopOwner(element) {
+    int index = services.indexOf(element);
+    services.forEach((element) {
+      element.highLighted = false;
+    });
+    services[index].highLighted = true;
+
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<ServiceProvider> services = [
-      ServiceProvider(
-          name: 'Jhone Doe',
-          pic: 'assets/images/girl2.png',
-          highLighted: false),
-      ServiceProvider(
-          name: 'Jhone Doe', pic: 'assets/images/girl2.png', highLighted: true),
-      ServiceProvider(
-          name: 'Jhone Doe',
-          pic: 'assets/images/girl2.png',
-          highLighted: false),
-      ServiceProvider(
-          name: 'Jhone Doe',
-          pic: 'assets/images/girl2.png',
-          highLighted: false),
-      ServiceProvider(
-          name: 'Dudung Sokmati',
-          pic: 'assets/images/girl2.png',
-          highLighted: false),
-      ServiceProvider(
-          name: 'Dudung Sokmati',
-          pic: 'assets/images/girl2.png',
-          highLighted: false),
-    ];
-
     final double height = Get.height;
     final double width = Get.width;
     return SafeArea(
@@ -105,11 +115,9 @@ class AddServiceProviderScreen extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(5, 20, 20, 0),
                     child: ListView.builder(
                         itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {},
-                            child: ServiceProviderTile(
-                              serviceProvider: services[index],
-                            ),
+                          return ServiceProviderTile(
+                            serviceProvider: services[index],
+                            changeShopOwner: changeShopOwner,
                           );
                         },
                         itemCount: services.length),
@@ -123,17 +131,24 @@ class AddServiceProviderScreen extends StatelessWidget {
 }
 
 class ServiceProviderTile extends StatelessWidget {
-  final ServiceProvider? serviceProvider;
+  final serviceProvider;
+  final Function? changeShopOwner;
 
-  const ServiceProviderTile({this.serviceProvider});
+  const ServiceProviderTile({
+    this.serviceProvider,
+    this.changeShopOwner,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 0),
       child: ListTile(
+        onTap: () {
+          changeShopOwner!(serviceProvider);
+        },
         title: Text(
-          serviceProvider!.name!,
+          serviceProvider.name!,
           style: TextStyle(
             color: Colors.white,
             fontSize: 13,
@@ -150,10 +165,10 @@ class ServiceProviderTile extends StatelessWidget {
         leading: CircleAvatar(
           radius: 29,
           backgroundImage: AssetImage(
-            serviceProvider!.pic!,
+            serviceProvider.pic!,
           ),
         ),
-        trailing: serviceProvider!.highLighted!
+        trailing: serviceProvider.highLighted!
             ? Container(
                 decoration: BoxDecoration(
                   color: AppColors.mainRed,
