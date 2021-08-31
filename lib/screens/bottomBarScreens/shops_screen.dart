@@ -65,7 +65,7 @@ class ShopsScreen extends StatelessWidget {
               Positioned(
                 bottom: 0,
                 child: Container(
-                    height: height * 0.78,
+                    height: height * 0.85,
                     width: width,
                     decoration: BoxDecoration(
                         color: AppColors.background,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:scheduling_app/screens/registration_screen.dart';
+import 'package:scheduling_app/screens/splash_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           displayColor: Colors.white,
         ),
       ),
-      home: RegistrationScreen(),
+      home: SplashScreen(),
     );
   }
 }

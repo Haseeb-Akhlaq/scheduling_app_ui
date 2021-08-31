@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scheduling_app/controllers/dash_board_tab_controller.dart';
+import 'package:scheduling_app/screens/bottomBarScreens/shops_screen.dart';
 import 'package:scheduling_app/styles/colors.dart';
 
 class DashBoardScreen1 extends StatelessWidget {
@@ -36,12 +37,17 @@ class DashBoardScreen1 extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                margin: EdgeInsets.only(left: 20),
-                                child: Icon(
-                                  Icons.menu,
-                                  color: Colors.white,
-                                  size: 35,
+                              GestureDetector(
+                                onTap: () {
+                                  Get.to(() => ShopsScreen());
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(left: 20),
+                                  child: Icon(
+                                    Icons.menu,
+                                    color: Colors.white,
+                                    size: 35,
+                                  ),
                                 ),
                               ),
                               Text(
@@ -185,7 +191,7 @@ class DashBoardScreen1 extends StatelessWidget {
               Positioned(
                 bottom: 0,
                 child: Container(
-                    height: height * 0.64,
+                    height: height * 0.63,
                     width: width,
                     decoration: BoxDecoration(
                         color: AppColors.background,

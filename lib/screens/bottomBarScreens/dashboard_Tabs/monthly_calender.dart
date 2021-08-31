@@ -9,6 +9,8 @@ class MonthView extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: Container(
         child: SfCalendar(
+          appointmentTextStyle: TextStyle(fontSize: 18),
+          dataSource: _getCalendarDataSource(),
           todayHighlightColor: AppColors.mainRed,
           showNavigationArrow: true,
           viewHeaderStyle: ViewHeaderStyle(
@@ -28,10 +30,10 @@ class MonthView extends StatelessWidget {
           cellBorderColor: AppColors.background,
           monthViewSettings: MonthViewSettings(
             monthCellStyle: MonthCellStyle(
-              backgroundColor: AppColors.background,
-              trailingDatesBackgroundColor: AppColors.background,
+              // backgroundColor: AppColors.background,
+              // trailingDatesBackgroundColor: AppColors.background,
               leadingDatesBackgroundColor: AppColors.background,
-              todayBackgroundColor: AppColors.mainRed,
+              //todayBackgroundColor: AppColors.mainRed,
               textStyle: TextStyle(fontSize: 12, fontFamily: 'Arial'),
               todayTextStyle: TextStyle(
                   fontSize: 12,
@@ -50,5 +52,49 @@ class MonthView extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+_AppointmentDataSource _getCalendarDataSource() {
+  List<Appointment> appointments = <Appointment>[];
+  appointments.add(
+    Appointment(
+      startTime: DateTime.now(),
+      endTime: DateTime.now().add(Duration(minutes: 10)),
+      subject: 'Meeting',
+      color: Colors.blue,
+      startTimeZone: '',
+      endTimeZone: '',
+    ),
+  );
+
+  appointments.add(
+    Appointment(
+      startTime: DateTime.now(),
+      endTime: DateTime.now().add(Duration(minutes: 10)),
+      subject: 'Meeting',
+      color: Colors.purple,
+      startTimeZone: '',
+      endTimeZone: '',
+    ),
+  );
+
+  appointments.add(
+    Appointment(
+      startTime: DateTime.now().add(Duration(days: 1)),
+      endTime: DateTime.now().add(Duration(days: 1, minutes: 10)),
+      subject: 'Meeting',
+      color: Colors.yellow,
+      startTimeZone: '',
+      endTimeZone: '',
+    ),
+  );
+
+  return _AppointmentDataSource(appointments);
+}
+
+class _AppointmentDataSource extends CalendarDataSource {
+  _AppointmentDataSource(List<Appointment> source) {
+    appointments = source;
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:scheduling_app/screens/bottomBarScreens/new_appointment_screen_2.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:scheduling_app/styles/colors.dart';
 import 'package:scheduling_app/week_calenders/weekly_calender.dart';
 
@@ -281,89 +281,106 @@ class NewAppointmentScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: height * 0.035),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Time',
-                                  style: TextStyle(
-                                    fontSize: height * 0.025,
-                                  ),
-                                ),
-                                SizedBox(height: height * 0.030),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    TimeWidget(
-                                      height: height,
-                                      isSelected: false,
-                                      time: '08:30 AM',
-                                    ),
-                                    TimeWidget(
-                                      height: height,
-                                      isSelected: true,
-                                      time: '09:00 AM',
-                                    ),
-                                    TimeWidget(
-                                      height: height,
-                                      isSelected: false,
-                                      time: '09:30 AM',
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: height * 0.030),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    TimeWidget(
-                                      height: height,
-                                      isSelected: false,
-                                      time: '10:00 AM',
-                                    ),
-                                    TimeWidget(
-                                      height: height,
-                                      isSelected: false,
-                                      time: '10:30 AM',
-                                    ),
-                                    TimeWidget(
-                                      height: height,
-                                      isSelected: false,
-                                      time: '11:00 AM',
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: height * 0.040),
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.to(NewAppointmentScreen2());
-                                  },
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                        color: AppColors.mainRed,
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 15,
-                                        horizontal: 10,
-                                      ),
-                                      child: Text(
-                                        'Request Appointment',
-                                        style:
-                                            TextStyle(fontSize: height * 0.020),
-                                      ),
+                          Obx(
+                            () => Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Time',
+                                    style: TextStyle(
+                                      fontSize: height * 0.025,
                                     ),
                                   ),
-                                ),
-                                SizedBox(height: height * 0.030),
-                              ],
+                                  SizedBox(height: height * 0.030),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      TimeWidget(
+                                        height: height,
+                                        isSelected: false,
+                                        time: '08:30 AM',
+                                      ),
+                                      TimeWidget(
+                                        height: height,
+                                        isSelected: true,
+                                        time: '09:00 AM',
+                                      ),
+                                      TimeWidget(
+                                        height: height,
+                                        isSelected: false,
+                                        time: '09:30 AM',
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(height: height * 0.030),
+                                  clientSelected.isTrue
+                                      ? Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            TimeWidget(
+                                              height: height,
+                                              isSelected: false,
+                                              time: '10:00 AM',
+                                            ),
+                                            TimeWidget(
+                                              height: height,
+                                              isSelected: false,
+                                              time: '10:30 AM',
+                                            ),
+                                            TimeWidget(
+                                              height: height,
+                                              isSelected: false,
+                                              time: '11:00 AM',
+                                            )
+                                          ],
+                                        )
+                                      : LinearPercentIndicator(
+                                          backgroundColor: AppColors.textLight,
+                                          width: width - 40,
+                                          animation: true,
+                                          animationDuration: 10,
+                                          lineHeight: 5,
+                                          percent: 0.3,
+                                          //linearStrokeCap: LinearStrokeCap.butt,
+                                          progressColor: Colors.red,
+                                        ),
+                                  SizedBox(height: height * 0.040),
+                                  GestureDetector(
+                                    onTap: () {
+                                      //Get.to(NewAppointmentScreen2());
+                                    },
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                          color: AppColors.mainRed,
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 15,
+                                          horizontal: 10,
+                                        ),
+                                        child: Text(
+                                          clientSelected.isTrue
+                                              ? 'Request Appointment'
+                                              : 'Make Appointment',
+                                          style: TextStyle(
+                                              fontSize: height * 0.020),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: height * 0.030),
+                                ],
+                              ),
                             ),
-                          ),
+                          )
                         ],
                       ),
                     )),

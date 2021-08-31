@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:scheduling_app/screens/bottomBarScreens/dash_board_screen_1.dart';
-import 'package:scheduling_app/screens/bottomBarScreens/service_provider_screen.dart';
 import 'package:scheduling_app/screens/bottomBarScreens/settings_screen.dart';
-import 'package:scheduling_app/screens/bottomBarScreens/shops_screen.dart';
 
 class BottombarController extends GetxController {
   int selectedIndex = 0;
 
   List<Widget> children = [
     DashBoardScreen1(),
-    ShopsScreen(),
-    ServiceProviderScreen(),
+    Container(
+      child: Center(child: Text('ShopScreen')),
+    ),
+    Container(
+      child: Center(child: Text('Contacts Screen')),
+    ),
+    //ServiceProviderScreen(),
     SettingScreen(),
   ];
 
