@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:scheduling_app/screens/registration_screen.dart';
+import 'package:scheduling_app/screens/welcome_screen.dart';
 import 'package:scheduling_app/styles/colors.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => RegistrationScreen(),
+          builder: (context) => WelcomeScreen(),
         ),
       );
     });

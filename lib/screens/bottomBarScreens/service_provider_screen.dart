@@ -4,8 +4,11 @@ import 'package:get/get.dart';
 import 'package:scheduling_app/models/serviceProviderModel.dart';
 import 'package:scheduling_app/screens/bottomBarScreens/services_screen.dart';
 import 'package:scheduling_app/styles/colors.dart';
+import 'package:scheduling_app/widgets/drawer.dart';
 
 class ServiceProviderScreen extends StatelessWidget {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     final double height = Get.height;
@@ -22,6 +25,8 @@ class ServiceProviderScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+          key: _scaffoldKey,
+          drawer: AppDrawer(),
           backgroundColor: Colors.black,
           body: Stack(
             children: [
@@ -41,12 +46,17 @@ class ServiceProviderScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                margin: EdgeInsets.only(left: 20),
-                                child: Icon(
-                                  Icons.menu,
-                                  color: Colors.white,
-                                  size: 32,
+                              GestureDetector(
+                                onTap: () {
+                                  _scaffoldKey.currentState!.openDrawer();
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(left: 20),
+                                  child: Icon(
+                                    Icons.menu,
+                                    color: Colors.white,
+                                    size: 32,
+                                  ),
                                 ),
                               ),
                               Text(
@@ -113,7 +123,7 @@ class ServiceProviderScreen extends StatelessWidget {
               Positioned(
                 bottom: 0,
                 child: Container(
-                    height: height * 0.68,
+                    height: height * 0.78,
                     width: width,
                     decoration: BoxDecoration(
                         color: AppColors.background,

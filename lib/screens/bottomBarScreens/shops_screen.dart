@@ -6,6 +6,7 @@ import 'package:scheduling_app/screens/bottomBarScreens/new_admin_screen.dart';
 import 'package:scheduling_app/styles/colors.dart';
 
 class ShopsScreen extends StatelessWidget {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     final double height = Get.height;
@@ -13,6 +14,7 @@ class ShopsScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+          key: _scaffoldKey,
           backgroundColor: Colors.black,
           body: Stack(
             children: [
@@ -32,12 +34,17 @@ class ShopsScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                margin: EdgeInsets.only(left: 20),
-                                child: Icon(
-                                  Icons.menu,
-                                  color: Colors.white,
-                                  size: 35,
+                              GestureDetector(
+                                onTap: () {
+                                  _scaffoldKey.currentState!.openDrawer();
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(left: 20),
+                                  child: Icon(
+                                    Icons.menu,
+                                    color: Colors.white,
+                                    size: 35,
+                                  ),
                                 ),
                               ),
                               Text(

@@ -2,14 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scheduling_app/controllers/dash_board_tab_controller.dart';
-import 'package:scheduling_app/screens/bottomBarScreens/shops_screen.dart';
 import 'package:scheduling_app/styles/colors.dart';
+import 'package:scheduling_app/widgets/drawer.dart';
 
 class DashBoardScreen1 extends StatelessWidget {
   final PageController _pageController = PageController();
 
   final DashboardTabBarController _tabBarController =
       Get.put(DashboardTabBarController());
+
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +20,8 @@ class DashBoardScreen1 extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+          key: _scaffoldKey,
+          drawer: AppDrawer(),
           backgroundColor: Colors.black,
           body: Stack(
             children: [
@@ -39,7 +43,7 @@ class DashBoardScreen1 extends StatelessWidget {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  Get.to(() => ShopsScreen());
+                                  _scaffoldKey.currentState!.openDrawer();
                                 },
                                 child: Container(
                                   margin: EdgeInsets.only(left: 20),
