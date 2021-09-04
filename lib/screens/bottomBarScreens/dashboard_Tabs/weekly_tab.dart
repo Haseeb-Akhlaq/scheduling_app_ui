@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:scheduling_app/models/tileModel.dart';
 import 'package:scheduling_app/styles/colors.dart';
 import 'package:scheduling_app/widgets/hometile.dart';
@@ -291,7 +292,29 @@ class CardsWeeklyView extends StatelessWidget {
 }
 
 class TableWeeklyView extends StatelessWidget {
-  const TableWeeklyView({Key? key}) : super(key: key);
+  DateTime startDate = DateTime.now();
+  DateTime endDate = DateTime.now().add(Duration(days: 7));
+
+  var formattedStartDate = DateFormat().add_d().format(DateTime.now()).obs;
+  var formattedEndDate = DateFormat()
+      .add_d()
+      .add_MMMM()
+      .format(DateTime.now().add(Duration(days: 7)))
+      .obs;
+
+  changeDateNext() {
+    startDate = startDate.add(Duration(days: 7));
+    endDate = endDate.add(Duration(days: 7));
+    formattedStartDate.value = DateFormat().add_d().format(startDate);
+    formattedEndDate.value = DateFormat().add_d().add_MMMM().format(endDate);
+  }
+
+  changeDatePrevious() {
+    startDate = startDate.subtract(Duration(days: 7));
+    endDate = endDate.subtract(Duration(days: 7));
+    formattedStartDate.value = DateFormat().add_d().format(startDate);
+    formattedEndDate.value = DateFormat().add_d().add_MMMM().format(endDate);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -302,14 +325,26 @@ class TableWeeklyView extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(Icons.arrow_back_ios, color: Colors.white),
-              Text(
-                '2 - 8 August',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+              GestureDetector(
+                onTap: () {
+                  changeDatePrevious();
+                },
+                child: Icon(Icons.arrow_back_ios, color: Colors.white),
+              ),
+              Obx(
+                () => Text(
+                  '$formattedStartDate - $formattedEndDate',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
               ),
-              Icon(Icons.arrow_forward_ios, color: Colors.white),
+              GestureDetector(
+                  onTap: () {
+                    changeDateNext();
+                  },
+                  child: Icon(Icons.arrow_forward_ios, color: Colors.white)),
             ],
           ),
         ),

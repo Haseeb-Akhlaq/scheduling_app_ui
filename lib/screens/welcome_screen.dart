@@ -22,16 +22,13 @@ class WelcomeScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 30.0),
           scrollDirection: Axis.vertical,
           children: <Widget>[
-            SizedBox(height: 90.0),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                // Image.asset(
-                //   'assets/images/barber.jpg',
-                //   height: 100,
-                //   width: 200,
-                //   fit: BoxFit.contain,
-                // ),
+                Image.asset(
+                  'assets/images/MainLogo.png',
+                  fit: BoxFit.contain,
+                ),
                 // kBuildLogo(),
                 SizedBox(height: 12.0),
                 // alphaTextField(

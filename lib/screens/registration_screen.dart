@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:scheduling_app/screens/registration_screen_2.dart';
 import 'package:scheduling_app/styles/colors.dart';
-
-import 'bottomBarScreens/bottom_bar.dart';
 
 class RegistrationScreen extends StatelessWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -109,96 +108,6 @@ class RegistrationScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          ),
-                          SizedBox(height: height * 0.04),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('First Name'),
-                              SizedBox(height: height * 0.005),
-                              TextField(
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                                decoration: InputDecoration(
-                                  isCollapsed: true,
-                                  contentPadding: EdgeInsets.only(top: 5),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColors.textLight, width: 0.2),
-                                  ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColors.textLight, width: 0.5),
-                                  ),
-                                  border: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColors.textLight, width: 0.5),
-                                  ),
-                                  prefixIconConstraints: BoxConstraints(
-                                    minWidth: 25,
-                                    minHeight: 35,
-                                  ),
-                                  prefixIcon: Transform.scale(
-                                    scale: 0.7,
-                                    child: SvgPicture.asset(
-                                      'assets/images/user.svg',
-                                    ),
-                                  ),
-                                  hintText: "    Jhone",
-                                  hintStyle: TextStyle(
-                                    fontSize: 13,
-                                    color: AppColors.textLight,
-                                    fontFamily: 'pop-light',
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: height * 0.04),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Last Name'),
-                              SizedBox(height: height * 0.005),
-                              TextField(
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                                decoration: InputDecoration(
-                                  isCollapsed: true,
-                                  contentPadding: EdgeInsets.only(top: 5),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColors.textLight, width: 0.2),
-                                  ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColors.textLight, width: 0.5),
-                                  ),
-                                  border: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColors.textLight, width: 0.5),
-                                  ),
-                                  prefixIconConstraints: BoxConstraints(
-                                    minWidth: 25,
-                                    minHeight: 35,
-                                  ),
-                                  prefixIcon: Transform.scale(
-                                    scale: 0.7,
-                                    child: SvgPicture.asset(
-                                      'assets/images/user.svg',
-                                    ),
-                                  ),
-                                  hintText: "    Doe",
-                                  hintStyle: TextStyle(
-                                    fontSize: 13,
-                                    color: AppColors.textLight,
-                                    fontFamily: 'pop-light',
-                                  ),
-                                ),
-                              ),
-                            ],
                           ),
                           SizedBox(height: height * 0.04),
                           Column(
@@ -419,97 +328,6 @@ class RegistrationScreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(height: height * 0.04),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Gender'),
-                              SizedBox(height: height * 0.005),
-                              TextField(
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                                decoration: InputDecoration(
-                                  isCollapsed: true,
-                                  contentPadding: EdgeInsets.only(top: 5),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColors.textLight, width: 0.2),
-                                  ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColors.textLight, width: 0.5),
-                                  ),
-                                  border: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColors.textLight, width: 0.5),
-                                  ),
-                                  prefixIconConstraints: BoxConstraints(
-                                    minWidth: 25,
-                                    minHeight: 35,
-                                  ),
-                                  prefixIcon: Transform.scale(
-                                    scale: 0.6,
-                                    child: SvgPicture.asset(
-                                      'assets/images/gender.svg',
-                                    ),
-                                  ),
-                                  hintText: "    Male",
-                                  hintStyle: TextStyle(
-                                    fontSize: 13,
-                                    color: AppColors.textLight,
-                                    fontFamily: 'pop-light',
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: height * 0.04),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Date of Birth'),
-                              SizedBox(height: height * 0.005),
-                              TextField(
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                  isCollapsed: true,
-                                  contentPadding: EdgeInsets.only(top: 5),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColors.textLight, width: 0.2),
-                                  ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColors.textLight, width: 0.5),
-                                  ),
-                                  border: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColors.textLight, width: 0.5),
-                                  ),
-                                  prefixIconConstraints: BoxConstraints(
-                                    minWidth: 25,
-                                    minHeight: 35,
-                                  ),
-                                  prefixIcon: Transform.scale(
-                                    scale: 0.6,
-                                    child: SvgPicture.asset(
-                                      'assets/images/birthday.svg',
-                                    ),
-                                  ),
-                                  hintText: "    10 Jan 2000",
-                                  hintStyle: TextStyle(
-                                    fontSize: 13,
-                                    color: AppColors.textLight,
-                                    fontFamily: 'pop-light',
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: height * 0.04),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -546,7 +364,7 @@ class RegistrationScreen extends StatelessWidget {
                           SizedBox(height: height * 0.04),
                           GestureDetector(
                             onTap: () {
-                              Get.to(BottomBarPage());
+                              Get.to(RegistrationScreen2());
                             },
                             child: Container(
                               alignment: Alignment.center,

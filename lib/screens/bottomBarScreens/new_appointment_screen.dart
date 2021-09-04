@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:scheduling_app/styles/colors.dart';
-import 'package:scheduling_app/week_calenders/weekly_calender.dart';
 
 class NewAppointmentScreen extends StatelessWidget {
   @override
@@ -13,6 +11,7 @@ class NewAppointmentScreen extends StatelessWidget {
     final double width = Get.width;
 
     var clientSelected = true.obs;
+    var sliderValue = 20.0.obs;
 
     return SafeArea(
       child: Scaffold(
@@ -264,22 +263,22 @@ class NewAppointmentScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Container(
-                              child: CalendarTimeline(
-                                initialDate: DateTime(2020, 4, 20),
-                                firstDate: DateTime(2019, 1, 15),
-                                lastDate: DateTime(2020, 11, 20),
-                                onDateSelected: (date) => print(date),
-                                leftMargin: 10,
-                                dayColor: Colors.white,
-                                activeDayColor: Colors.white,
-                                activeBackgroundDayColor: AppColors.mainRed,
-                                locale: 'en_ISO',
-                              ),
-                            ),
-                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(left: 10),
+                          //   child: Container(
+                          //     child: CalendarTimeline(
+                          //       initialDate: DateTime(2020, 4, 20),
+                          //       firstDate: DateTime(2019, 1, 15),
+                          //       lastDate: DateTime(2020, 11, 20),
+                          //       onDateSelected: (date) => print(date),
+                          //       leftMargin: 10,
+                          //       dayColor: Colors.white,
+                          //       activeDayColor: Colors.white,
+                          //       activeBackgroundDayColor: AppColors.mainRed,
+                          //       locale: 'en_ISO',
+                          //     ),
+                          //   ),
+                          // ),
                           SizedBox(height: height * 0.035),
                           Obx(
                             () => Padding(
@@ -339,15 +338,27 @@ class NewAppointmentScreen extends StatelessWidget {
                                             )
                                           ],
                                         )
-                                      : LinearPercentIndicator(
-                                          backgroundColor: AppColors.textLight,
-                                          width: width - 40,
-                                          animation: true,
-                                          animationDuration: 10,
-                                          lineHeight: 5,
-                                          percent: 0.3,
-                                          //linearStrokeCap: LinearStrokeCap.butt,
-                                          progressColor: Colors.red,
+                                      : Obx(
+                                          () => SliderTheme(
+                                            data: SliderThemeData(
+                                              trackHeight: 1.5,
+                                            ),
+                                            child: Slider(
+                                              label:
+                                                  '${sliderValue.value.toInt()}',
+                                              value: sliderValue.value,
+                                              thumbColor: AppColors.mainRed,
+                                              activeColor: AppColors.mainRed,
+                                              inactiveColor:
+                                                  Colors.white.withOpacity(0.1),
+                                              onChanged: (v) {
+                                                sliderValue.value = v;
+                                              },
+                                              min: 0,
+                                              max: 100,
+                                              divisions: 100,
+                                            ),
+                                          ),
                                         ),
                                   SizedBox(height: height * 0.040),
                                   GestureDetector(
@@ -412,15 +423,16 @@ class TimeWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Icon(
               Icons.watch_later_outlined,
               color: Colors.white,
-              size: height * 0.028,
+              size: height * 0.027,
             ),
             Text(
-              '  $time',
-              style: TextStyle(fontSize: height * 0.017),
+              '$time',
+              style: TextStyle(fontSize: height * 0.015),
             )
           ],
         ),
