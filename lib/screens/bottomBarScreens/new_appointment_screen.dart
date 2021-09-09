@@ -2,9 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:scheduling_app/models/service.dart';
 import 'package:scheduling_app/styles/colors.dart';
+import 'package:scheduling_app/week_calenders/weekly_calender.dart';
+import 'package:scheduling_app/widgets/drawer.dart';
 
 class NewAppointmentScreen extends StatelessWidget {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     final double height = Get.height;
@@ -15,7 +19,9 @@ class NewAppointmentScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+          key: _scaffoldKey,
           backgroundColor: Colors.black,
+          drawer: AppDrawer(),
           body: Stack(
             children: [
               Positioned(
@@ -34,12 +40,17 @@ class NewAppointmentScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                margin: EdgeInsets.only(left: 20),
-                                child: Icon(
-                                  Icons.menu,
-                                  color: Colors.white,
-                                  size: 32,
+                              GestureDetector(
+                                onTap: () {
+                                  _scaffoldKey.currentState!.openDrawer();
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(left: 20),
+                                  child: Icon(
+                                    Icons.menu,
+                                    color: Colors.white,
+                                    size: 35,
+                                  ),
                                 ),
                               ),
                               Text(
@@ -241,11 +252,23 @@ class NewAppointmentScreen extends StatelessWidget {
                                 SizedBox(height: height * 0.030),
                                 Row(
                                   children: [
-                                    ServicesContainer2(),
+                                    ServicesContainer2(
+                                      service: Service(
+                                          time: '30',
+                                          serviceName: 'Dummy Service'),
+                                    ),
                                     SizedBox(width: width * 0.035),
-                                    ServicesContainer2(),
+                                    ServicesContainer2(
+                                      service: Service(
+                                          time: '35',
+                                          serviceName: 'Dummy Service'),
+                                    ),
                                     SizedBox(width: width * 0.035),
-                                    ServicesContainer2(),
+                                    ServicesContainer2(
+                                      service: Service(
+                                          time: '45',
+                                          serviceName: 'Dummy Service'),
+                                    ),
                                   ],
                                 ),
                                 SizedBox(height: height * 0.035),
@@ -253,7 +276,7 @@ class NewAppointmentScreen extends StatelessWidget {
                                   width: double.infinity,
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    'August 2021',
+                                    'September 2021',
                                     style: TextStyle(
                                       fontSize: height * 0.025,
                                     ),
@@ -263,22 +286,22 @@ class NewAppointmentScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          // Padding(
-                          //   padding: const EdgeInsets.only(left: 10),
-                          //   child: Container(
-                          //     child: CalendarTimeline(
-                          //       initialDate: DateTime(2020, 4, 20),
-                          //       firstDate: DateTime(2019, 1, 15),
-                          //       lastDate: DateTime(2020, 11, 20),
-                          //       onDateSelected: (date) => print(date),
-                          //       leftMargin: 10,
-                          //       dayColor: Colors.white,
-                          //       activeDayColor: Colors.white,
-                          //       activeBackgroundDayColor: AppColors.mainRed,
-                          //       locale: 'en_ISO',
-                          //     ),
-                          //   ),
-                          // ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Container(
+                              child: CalendarTimeline(
+                                initialDate: DateTime(2020, 4, 20),
+                                firstDate: DateTime(2019, 1, 15),
+                                lastDate: DateTime(2020, 11, 20),
+                                onDateSelected: (date) => print(date),
+                                leftMargin: 10,
+                                dayColor: Colors.white,
+                                activeDayColor: Colors.white,
+                                activeBackgroundDayColor: AppColors.mainRed,
+                                locale: 'en_ISO',
+                              ),
+                            ),
+                          ),
                           SizedBox(height: height * 0.035),
                           Obx(
                             () => Padding(
@@ -356,7 +379,6 @@ class NewAppointmentScreen extends StatelessWidget {
                                               },
                                               min: 0,
                                               max: 100,
-                                              divisions: 100,
                                             ),
                                           ),
                                         ),
@@ -442,6 +464,8 @@ class TimeWidget extends StatelessWidget {
 }
 
 class ServicesContainer2 extends StatelessWidget {
+  final Service? service;
+  const ServicesContainer2({this.service});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -451,13 +475,30 @@ class ServicesContainer2 extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              'assets/images/24hours.svg',
-              height: Get.height * 0.06,
+            Stack(
+              children: [
+                Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Text(
+                      service!.time!,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'pop-Bold',
+                      ),
+                    )),
+                Container(
+                  width: 50,
+                  height: 50,
+                  child: Image.asset(
+                    'assets/images/dummyService.png',
+                  ),
+                ),
+              ],
             ),
             SizedBox(height: 14),
             Text(
-              'Dummy Service',
+              service!.serviceName!,
               style: TextStyle(
                 fontSize: Get.height * 0.010,
               ),

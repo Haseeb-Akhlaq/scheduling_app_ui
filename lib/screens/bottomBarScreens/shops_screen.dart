@@ -4,6 +4,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:scheduling_app/screens/bottomBarScreens/create_work_space_screen.dart';
 import 'package:scheduling_app/screens/bottomBarScreens/new_admin_screen.dart';
 import 'package:scheduling_app/styles/colors.dart';
+import 'package:scheduling_app/widgets/drawer.dart';
 
 class ShopsScreen extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -16,6 +17,7 @@ class ShopsScreen extends StatelessWidget {
       child: Scaffold(
           key: _scaffoldKey,
           backgroundColor: Colors.black,
+          drawer: AppDrawer(),
           body: Stack(
             children: [
               Positioned(

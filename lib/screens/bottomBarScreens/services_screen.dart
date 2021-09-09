@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:scheduling_app/models/service.dart';
 import 'package:scheduling_app/styles/colors.dart';
 
 class ServicesScreen extends StatelessWidget {
@@ -10,14 +10,18 @@ class ServicesScreen extends StatelessWidget {
     final double height = Get.height;
     final double width = Get.width;
 
-    // List<ServiceProvider> services = [
-    //   ServiceProvider(name: 'Dudung Sokmati', pic: 'assets/images/girl.png'),
-    //   ServiceProvider(name: 'Dudung Sokmati', pic: 'assets/images/girl.png'),
-    //   ServiceProvider(name: 'Dudung Sokmati', pic: 'assets/images/girl.png'),
-    //   ServiceProvider(name: 'Dudung Sokmati', pic: 'assets/images/girl.png'),
-    //   ServiceProvider(name: 'Dudung Sokmati', pic: 'assets/images/girl.png'),
-    //   ServiceProvider(name: 'Dudung Sokmati', pic: 'assets/images/girl.png'),
-    // ];
+    List<Service> services = [
+      Service(serviceName: 'Dummy Service', time: '24'),
+      Service(serviceName: 'Dummy Service', time: '30'),
+      Service(serviceName: 'Dummy Service', time: '45'),
+      Service(serviceName: 'Dummy Service', time: '15'),
+      Service(serviceName: 'Dummy Service', time: '35'),
+      Service(serviceName: 'Dummy Service', time: '45'),
+      Service(serviceName: 'Dummy Service', time: '20'),
+      Service(serviceName: 'Dummy Service', time: '10'),
+      Service(serviceName: 'Dummy Service', time: '05'),
+      Service(serviceName: 'Dummy Service', time: '50'),
+    ];
 
     return SafeArea(
       child: Scaffold(
@@ -135,9 +139,11 @@ class ServicesScreen extends StatelessWidget {
                                   childAspectRatio: 1,
                                   crossAxisSpacing: 12,
                                   mainAxisSpacing: 10),
-                          itemCount: 10,
+                          itemCount: services.length,
                           itemBuilder: (BuildContext ctx, index) {
-                            return ServicesContainer();
+                            return ServicesContainer(
+                              service: services[index],
+                            );
                           }),
                     )),
               )
@@ -148,6 +154,9 @@ class ServicesScreen extends StatelessWidget {
 }
 
 class ServicesContainer extends StatelessWidget {
+  final Service? service;
+
+  const ServicesContainer({this.service});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -155,10 +164,30 @@ class ServicesContainer extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset('assets/images/24hours.svg'),
+          Stack(
+            children: [
+              Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Text(
+                    service!.time!,
+                    style: TextStyle(
+                      fontSize: 27,
+                      fontFamily: 'pop-Bold',
+                    ),
+                  )),
+              Container(
+                width: 80,
+                height: 80,
+                child: Image.asset(
+                  'assets/images/dummyService.png',
+                ),
+              ),
+            ],
+          ),
           SizedBox(height: 14),
           Text(
-            'Dummy Service',
+            service!.serviceName!,
             style: TextStyle(
               fontSize: 12,
             ),
