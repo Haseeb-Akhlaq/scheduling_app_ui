@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scheduling_app/screens/bottomBarScreens/service_provider_screen.dart';
 import 'package:scheduling_app/screens/bottomBarScreens/shops_screen.dart';
+import 'package:scheduling_app/screens/manage_service_provider_screen.dart';
+import 'package:scheduling_app/screens/notifications_screen.dart';
 import 'package:scheduling_app/styles/colors.dart';
 
 class AppDrawer extends StatefulWidget {
@@ -47,6 +49,7 @@ class _AppDrawerState extends State<AppDrawer> {
                   padding: const EdgeInsets.all(0.0),
                   children: [
                     ListTile(
+                      minLeadingWidth: 0,
                       leading: FittedBox(
                         fit: BoxFit.cover,
                         child: Icon(
@@ -57,7 +60,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       ),
                       title: Text(
                         'Shops',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: 16),
                         maxLines: 1,
                       ),
                       onTap: () {
@@ -65,6 +68,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       },
                     ),
                     ListTile(
+                      minLeadingWidth: 0,
                       leading: FittedBox(
                         fit: BoxFit.cover,
                         child: Icon(
@@ -75,11 +79,49 @@ class _AppDrawerState extends State<AppDrawer> {
                       ),
                       title: Text(
                         'Service Provider',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(fontSize: 16),
                         maxLines: 1,
                       ),
                       onTap: () {
                         Get.to(() => ServiceProviderScreen());
+                      },
+                    ),
+                    ListTile(
+                      minLeadingWidth: 0,
+                      leading: FittedBox(
+                        fit: BoxFit.cover,
+                        child: Icon(
+                          Icons.settings,
+                          color: Colors.white,
+                          size: 26,
+                        ),
+                      ),
+                      title: Text(
+                        'Manage Service Provider',
+                        style: TextStyle(fontSize: 16),
+                        maxLines: 1,
+                      ),
+                      onTap: () {
+                        Get.to(() => ManageServiceProviderScreen());
+                      },
+                    ),
+                    ListTile(
+                      minLeadingWidth: 0,
+                      leading: FittedBox(
+                        fit: BoxFit.cover,
+                        child: Icon(
+                          Icons.notifications,
+                          color: Colors.white,
+                          size: 26,
+                        ),
+                      ),
+                      title: Text(
+                        'Notifications',
+                        style: TextStyle(fontSize: 16),
+                        maxLines: 1,
+                      ),
+                      onTap: () {
+                        Get.to(() => NotificationsScreen());
                       },
                     ),
                   ],

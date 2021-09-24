@@ -12,6 +12,7 @@ class ShopsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final double height = Get.height;
     final double width = Get.width;
+    var switchValue = false.obs;
 
     return SafeArea(
       child: Scaffold(
@@ -82,64 +83,27 @@ class ShopsScreen extends StatelessWidget {
                           topLeft: Radius.circular(35),
                           topRight: Radius.circular(35),
                         )),
-                    child: Column(
-                      children: [
-                        Expanded(
-                            child: Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                showOtpDialog(context, width, height);
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: AppColors.backgroundTiles,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 15,
-                                    horizontal: 10,
-                                  ),
-                                  child: ListTile(
-                                    title: Text(
-                                      'Schedule',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                    subtitle: Text(
-                                      'App',
-                                      style: TextStyle(
-                                        color: AppColors.textLight,
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                    trailing: Icon(
-                                      Icons.more_horiz,
-                                      color: AppColors.textLight,
-                                      size: 35,
-                                    ),
-                                    minLeadingWidth: 0,
-                                    leading: Image.asset(
-                                      'assets/images/logo.png',
-                                      height: 50,
-                                      width: 50,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )),
-                        Divider(
-                          thickness: 0.5,
-                          color: AppColors.textLight,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Column(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        children: [
+                          Expanded(
+                              child: Column(
                             children: [
+                              ShopsTile(width: width, height: height),
+                              SizedBox(height: 10),
+                              ShopsTile(width: width, height: height),
+                              SizedBox(height: 10),
+                              ShopsTile(width: width, height: height),
+                            ],
+                          )),
+                          Divider(
+                            thickness: 0.5,
+                            color: AppColors.textLight,
+                          ),
+                          Column(
+                            children: [
+                              SizedBox(height: 10),
                               GestureDetector(
                                 onTap: () {
                                   Get.to(CreateWorkSpaceScreen());
@@ -153,6 +117,36 @@ class ShopsScreen extends StatelessWidget {
                                     Text('    Add a Workspace')
                                   ],
                                 ),
+                              ),
+                              SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.fit_screen,
+                                        color: Colors.white,
+                                      ),
+                                      Text('    Tablet Mode')
+                                    ],
+                                  ),
+                                  Obx(
+                                    () => Switch(
+                                      activeColor: AppColors.mainRed,
+                                      activeTrackColor:
+                                          AppColors.backgroundTiles,
+                                      inactiveTrackColor:
+                                          AppColors.backgroundTiles,
+                                      inactiveThumbColor: AppColors.mainRed,
+                                      value: switchValue.value,
+                                      onChanged: (v) {
+                                        switchValue.value = v;
+                                      },
+                                    ),
+                                  )
+                                ],
                               ),
                               SizedBox(height: 20),
                               GestureDetector(
@@ -180,13 +174,83 @@ class ShopsScreen extends StatelessWidget {
                                 ],
                               ),
                             ],
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     )),
               )
             ],
           )),
+    );
+  }
+}
+
+class ShopsTile extends StatelessWidget {
+  const ShopsTile({
+    Key? key,
+    required this.width,
+    required this.height,
+  }) : super(key: key);
+
+  final double width;
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        showOtpDialog(context, width, height);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.backgroundTiles,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 10,
+            horizontal: 5,
+          ),
+          child: ListTile(
+            title: Text(
+              'Schedule',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+              ),
+            ),
+            subtitle: Text(
+              'App',
+              style: TextStyle(
+                color: AppColors.textLight,
+                fontSize: 12,
+              ),
+            ),
+            trailing: Container(
+              decoration: BoxDecoration(
+                  color: AppColors.green,
+                  borderRadius: BorderRadius.circular(25)),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                child: Text(
+                  'Available',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+            minLeadingWidth: 0,
+            leading: Image.asset(
+              'assets/images/logo.png',
+              height: 50,
+              width: 50,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

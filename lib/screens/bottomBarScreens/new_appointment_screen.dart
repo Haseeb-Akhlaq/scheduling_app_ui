@@ -1,22 +1,32 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:scheduling_app/models/service.dart';
 import 'package:scheduling_app/styles/colors.dart';
-import 'package:scheduling_app/week_calenders/weekly_calender.dart';
 import 'package:scheduling_app/widgets/drawer.dart';
 
-class NewAppointmentScreen extends StatelessWidget {
+class NewAppointmentScreen extends StatefulWidget {
+  @override
+  State<NewAppointmentScreen> createState() => _NewAppointmentScreenState();
+}
+
+class _NewAppointmentScreenState extends State<NewAppointmentScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  bool modalSheetOpened = false;
+
+  final double height = Get.height;
+  final double width = Get.width;
+
+  var clientSelected = true.obs;
+  var sliderValue = 20.0.obs;
+  var dialogSliderValue = 10.0.obs;
+
   @override
   Widget build(BuildContext context) {
-    final double height = Get.height;
-    final double width = Get.width;
-
-    var clientSelected = true.obs;
-    var sliderValue = 20.0.obs;
-
     return SafeArea(
       child: Scaffold(
           key: _scaffoldKey,
@@ -286,22 +296,22 @@ class NewAppointmentScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Container(
-                              child: CalendarTimeline(
-                                initialDate: DateTime(2020, 4, 20),
-                                firstDate: DateTime(2019, 1, 15),
-                                lastDate: DateTime(2020, 11, 20),
-                                onDateSelected: (date) => print(date),
-                                leftMargin: 10,
-                                dayColor: Colors.white,
-                                activeDayColor: Colors.white,
-                                activeBackgroundDayColor: AppColors.mainRed,
-                                locale: 'en_ISO',
-                              ),
-                            ),
-                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(left: 10),
+                          //   child: Container(
+                          //     child: CalendarTimeline(
+                          //       initialDate: DateTime(2020, 4, 20),
+                          //       firstDate: DateTime(2019, 1, 15),
+                          //       lastDate: DateTime(2020, 11, 20),
+                          //       onDateSelected: (date) => print(date),
+                          //       leftMargin: 10,
+                          //       dayColor: Colors.white,
+                          //       activeDayColor: Colors.white,
+                          //       activeBackgroundDayColor: AppColors.mainRed,
+                          //       locale: 'en_ISO',
+                          //     ),
+                          //   ),
+                          // ),
                           SizedBox(height: height * 0.035),
                           Obx(
                             () => Padding(
@@ -385,7 +395,282 @@ class NewAppointmentScreen extends StatelessWidget {
                                   SizedBox(height: height * 0.040),
                                   GestureDetector(
                                     onTap: () {
-                                      //Get.to(NewAppointmentScreen2());
+                                      setState(() {
+                                        modalSheetOpened = true;
+                                      });
+
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return WillPopScope(
+                                            onWillPop: () async => false,
+                                            child: Dialog(
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              insetPadding: EdgeInsets.all(15),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                              child: Container(
+                                                height: 580,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white
+                                                      .withOpacity(0.2),
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(10),
+                                                  child: Column(
+                                                    children: [
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          GestureDetector(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                modalSheetOpened =
+                                                                    false;
+                                                              });
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                            child: Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: AppColors
+                                                                    .mainRed,
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                              ),
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .all(3),
+                                                                child: Icon(
+                                                                  Icons.clear,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  size: 20,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(height: 10),
+                                                      Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            15),
+                                                                border:
+                                                                    Border.all(
+                                                                  color: Colors
+                                                                      .white,
+                                                                )),
+                                                        height: 90,
+                                                        width: 90,
+                                                        child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(15),
+                                                          child: Image.asset(
+                                                            'assets/images/pic.jpg',
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(height: 15),
+                                                      Text(
+                                                        'Adandio Mars',
+                                                        style: TextStyle(
+                                                          fontSize: 18,
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        width: double.infinity,
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        child: Text(
+                                                          'Services',
+                                                          style: TextStyle(
+                                                            fontSize: 18,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(height: 10),
+                                                      Row(
+                                                        children: [
+                                                          ServicesContainer2(
+                                                            service: Service(
+                                                                time: '45',
+                                                                serviceName:
+                                                                    'Dummy Service'),
+                                                          ),
+                                                          SizedBox(width: 10),
+                                                          ServicesContainer2(
+                                                            service: Service(
+                                                                time: '45',
+                                                                serviceName:
+                                                                    'Dummy Service'),
+                                                          ),
+                                                          SizedBox(width: 10),
+                                                          ServicesContainer2(
+                                                            service: Service(
+                                                                time: '45',
+                                                                serviceName:
+                                                                    'Dummy Service'),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(height: 20),
+                                                      Container(
+                                                        width: double.infinity,
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        child: Text(
+                                                          'Time Preferences',
+                                                          style: TextStyle(
+                                                            fontSize: 18,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(height: 10),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          TimeWidget(
+                                                            height: height,
+                                                            isSelected: false,
+                                                            time: '10:00 AM',
+                                                          ),
+                                                          TimeWidget(
+                                                            height: height,
+                                                            isSelected: true,
+                                                            time: '10:30 AM',
+                                                          ),
+                                                          TimeWidget(
+                                                            height: height,
+                                                            isSelected: false,
+                                                            time: '11:00 AM',
+                                                          )
+                                                        ],
+                                                      ),
+                                                      SizedBox(height: 10),
+                                                      Obx(
+                                                        () => SliderTheme(
+                                                          data: SliderThemeData(
+                                                            trackHeight: 1.5,
+                                                          ),
+                                                          child: Slider(
+                                                            label:
+                                                                '${dialogSliderValue.value.toInt()}',
+                                                            value:
+                                                                dialogSliderValue
+                                                                    .value,
+                                                            thumbColor:
+                                                                AppColors
+                                                                    .mainRed,
+                                                            activeColor:
+                                                                AppColors
+                                                                    .mainRed,
+                                                            inactiveColor: Colors
+                                                                .white
+                                                                .withOpacity(
+                                                                    0.1),
+                                                            onChanged: (v) {
+                                                              dialogSliderValue
+                                                                  .value = v;
+                                                            },
+                                                            min: 0,
+                                                            max: 100,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(height: 10),
+                                                      Row(
+                                                        children: [
+                                                          Expanded(
+                                                            child: Container(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              decoration: BoxDecoration(
+                                                                  color: AppColors
+                                                                      .mainRed,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              25)),
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .symmetric(
+                                                                  vertical: 15,
+                                                                  horizontal:
+                                                                      10,
+                                                                ),
+                                                                child: Text(
+                                                                  'Reject',
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          height *
+                                                                              0.020),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          SizedBox(width: 15),
+                                                          Expanded(
+                                                            child: Container(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              decoration: BoxDecoration(
+                                                                  color:
+                                                                      AppColors
+                                                                          .green,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              25)),
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .symmetric(
+                                                                  vertical: 15,
+                                                                  horizontal:
+                                                                      10,
+                                                                ),
+                                                                child: Text(
+                                                                  'Accept',
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          height *
+                                                                              0.020),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
                                     },
                                     child: Container(
                                       alignment: Alignment.center,
@@ -417,11 +702,97 @@ class NewAppointmentScreen extends StatelessWidget {
                         ],
                       ),
                     )),
-              )
+              ),
+              if (modalSheetOpened)
+                BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height,
+                    width: double.infinity,
+                  ),
+                ),
             ],
           )),
     );
   }
+}
+
+showOtpDialog(BuildContext context) {
+  double width = MediaQuery.of(context).size.width;
+  Get.defaultDialog(
+    cancel: Icon(Icons.notifications),
+    onCancel: () {
+      print('ok');
+    },
+    backgroundColor: Colors.white.withOpacity(0.3),
+    title: '',
+    content: Container(
+      color: Colors.transparent,
+      height: 390,
+      child: Column(
+        children: [
+          Image.asset('assets/images/verificationDialog.png'),
+          SizedBox(height: 20),
+          Text(
+            'Verification',
+            style: TextStyle(
+              color: AppColors.mainRed,
+            ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            'Please Enter your OTP code sent\n to your number',
+            textAlign: TextAlign.center,
+            style:
+                TextStyle(color: Colors.black.withOpacity(0.6), fontSize: 12),
+          ),
+          SizedBox(height: 20),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Didnt get code?',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.black.withOpacity(0.6), fontSize: 12),
+              ),
+              Text(
+                ' Resend OTP',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: AppColors.mainRed, fontSize: 12),
+              ),
+            ],
+          ),
+          SizedBox(height: 20),
+          GestureDetector(
+            onTap: () {
+              Get.back();
+            },
+            child: Container(
+              alignment: Alignment.center,
+              width: width * 0.4,
+              decoration: BoxDecoration(
+                  color: AppColors.mainRed,
+                  borderRadius: BorderRadius.circular(30)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 15,
+                  horizontal: 10,
+                ),
+                child: Text(
+                  'Verify',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
 }
 
 class TimeWidget extends StatelessWidget {
