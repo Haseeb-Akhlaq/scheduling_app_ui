@@ -5,6 +5,7 @@ import 'package:scheduling_app/screens/bottomBarScreens/service_provider_screen.
 import 'package:scheduling_app/screens/bottomBarScreens/shops_screen.dart';
 import 'package:scheduling_app/screens/manage_service_provider_screen.dart';
 import 'package:scheduling_app/screens/notifications_screen.dart';
+import 'package:scheduling_app/screens/profile_screen.dart';
 import 'package:scheduling_app/styles/colors.dart';
 
 class AppDrawer extends StatefulWidget {
@@ -122,6 +123,25 @@ class _AppDrawerState extends State<AppDrawer> {
                       ),
                       onTap: () {
                         Get.to(() => NotificationsScreen());
+                      },
+                    ),
+                    ListTile(
+                      minLeadingWidth: 0,
+                      leading: FittedBox(
+                        fit: BoxFit.cover,
+                        child: Icon(
+                          Icons.person,
+                          color: Colors.white,
+                          size: 26,
+                        ),
+                      ),
+                      title: Text(
+                        'Profile',
+                        style: TextStyle(fontSize: 16),
+                        maxLines: 1,
+                      ),
+                      onTap: () {
+                        Get.to(() => ProfileScreen());
                       },
                     ),
                   ],

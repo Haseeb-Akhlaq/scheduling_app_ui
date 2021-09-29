@@ -600,31 +600,42 @@ class _NewAppointmentScreenState extends State<NewAppointmentScreen> {
                                                       Row(
                                                         children: [
                                                           Expanded(
-                                                            child: Container(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              decoration: BoxDecoration(
-                                                                  color: AppColors
-                                                                      .mainRed,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              25)),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .symmetric(
-                                                                  vertical: 15,
-                                                                  horizontal:
-                                                                      10,
-                                                                ),
-                                                                child: Text(
-                                                                  'Reject',
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          height *
-                                                                              0.020),
+                                                            child:
+                                                                GestureDetector(
+                                                              onTap: () {
+                                                                setState(() {
+                                                                  modalSheetOpened =
+                                                                      false;
+                                                                });
+                                                                Navigator.pop(
+                                                                    context);
+                                                              },
+                                                              child: Container(
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center,
+                                                                decoration: BoxDecoration(
+                                                                    color: AppColors
+                                                                        .mainRed,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            25)),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .symmetric(
+                                                                    vertical:
+                                                                        15,
+                                                                    horizontal:
+                                                                        10,
+                                                                  ),
+                                                                  child: Text(
+                                                                    'Reject',
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            height *
+                                                                                0.020),
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
