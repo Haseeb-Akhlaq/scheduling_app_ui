@@ -9,7 +9,6 @@ class CreateScheduleScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final double height = Get.height;
     final double width = Get.width;
-    ;
 
     return SafeArea(
       child: Scaffold(
@@ -20,49 +19,47 @@ class CreateScheduleScreen extends StatelessWidget {
               Positioned(
                 top: 0,
                 child: Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.only(right: 50),
                   child: Container(
-                    height: height * 0.2,
+                    height: height * 0.3,
                     width: width,
                     alignment: Alignment.center,
                     child: Column(
                       children: [
                         SizedBox(height: height * 0.02),
                         Container(
+                          padding: EdgeInsets.symmetric(horizontal: 0),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               GestureDetector(
-                                onTap: () {
-                                  Get.back();
-                                },
+                                onTap: () {},
                                 child: Container(
-                                  height: height * 0.042,
-                                  width: height * 0.042,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: AppColors.mainRed,
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 8),
-                                    child: Icon(
-                                      Icons.arrow_back_ios,
-                                      color: Colors.white,
-                                      size: 18,
-                                    ),
+                                  margin: EdgeInsets.only(left: 20),
+                                  child: Icon(
+                                    Icons.menu,
+                                    color: Colors.white,
+                                    size: 32,
                                   ),
                                 ),
                               ),
-                              SizedBox(width: width * 0.1),
                               Text(
                                 'Create Schedule',
                                 style: TextStyle(
                                   fontSize: 18,
                                 ),
-                              )
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(right: 20),
+                                child: Icon(
+                                  Icons.notifications,
+                                  color: Colors.white,
+                                  size: 32,
+                                ),
+                              ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -71,7 +68,7 @@ class CreateScheduleScreen extends StatelessWidget {
               Positioned(
                 bottom: 0,
                 child: Container(
-                  height: height * 0.84,
+                  height: height * 0.87,
                   width: width,
                   decoration: BoxDecoration(
                       color: AppColors.background,
@@ -87,12 +84,13 @@ class CreateScheduleScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Select Date',
+                              'Date',
                               style: TextStyle(
                                 fontSize: 16,
                               ),
                             ),
-                            TextField(
+                            SizedBox(height: 15),
+                            GestureDetector(
                               onTap: () {
                                 showDatePicker(
                                     context: context,
@@ -102,38 +100,37 @@ class CreateScheduleScreen extends StatelessWidget {
                                     lastDate: DateTime.now()
                                         .add(Duration(days: 365)));
                               },
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                              decoration: InputDecoration(
-                                isCollapsed: true,
-                                contentPadding: EdgeInsets.only(top: 15),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.white, width: 0.5),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: AppColors.backgroundTiles,
+                                  border: Border.all(
+                                    color: Colors.white.withOpacity(0.1),
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.white, width: 0.5),
-                                ),
-                                border: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.white, width: 0.5),
-                                ),
-                                prefixIconConstraints: BoxConstraints(
-                                  minWidth: 25,
-                                  minHeight: 35,
-                                ),
-                                suffixIcon: Icon(
-                                  Icons.calendar_today_outlined,
-                                  color: Colors.white,
-                                  size: 22,
-                                ),
-                                hintText: "Date",
-                                hintStyle: TextStyle(
-                                  fontSize: 13,
-                                  color: AppColors.textLight,
-                                  fontFamily: 'pop-light',
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.calendar_today_outlined,
+                                            color:
+                                                Colors.white.withOpacity(0.5),
+                                            size: 22,
+                                          ),
+                                          Text(
+                                            '  01 Jan 2021',
+                                            style: TextStyle(
+                                              color:
+                                                  Colors.white.withOpacity(0.5),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -144,71 +141,129 @@ class CreateScheduleScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Select Time',
+                              'Start Time',
                               style: TextStyle(
                                 fontSize: 16,
                               ),
                             ),
-                            TextField(
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                              decoration: InputDecoration(
-                                isCollapsed: true,
-                                contentPadding: EdgeInsets.only(top: 15),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.white, width: 0.5),
+                            SizedBox(height: 15),
+                            GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: AppColors.backgroundTiles,
+                                  border: Border.all(
+                                    color: Colors.white.withOpacity(0.1),
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.white, width: 0.5),
-                                ),
-                                border: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.white, width: 0.5),
-                                ),
-                                prefixIconConstraints: BoxConstraints(
-                                  minWidth: 25,
-                                  minHeight: 35,
-                                ),
-                                suffixIcon: Icon(
-                                  Icons.access_time_outlined,
-                                  color: Colors.white,
-                                  size: 26,
-                                ),
-                                hintText: "Time",
-                                hintStyle: TextStyle(
-                                  fontSize: 13,
-                                  color: AppColors.textLight,
-                                  fontFamily: 'pop-light',
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.access_time_outlined,
+                                            color:
+                                                Colors.white.withOpacity(0.5),
+                                            size: 22,
+                                          ),
+                                          Text(
+                                            '  10:00 AM',
+                                            style: TextStyle(
+                                              color:
+                                                  Colors.white.withOpacity(0.5),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ],
                         ),
+                        SizedBox(height: height * 0.035),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'End Time',
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                            SizedBox(height: 15),
+                            GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: AppColors.backgroundTiles,
+                                  border: Border.all(
+                                    color: Colors.white.withOpacity(0.1),
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.access_time_outlined,
+                                            color:
+                                                Colors.white.withOpacity(0.5),
+                                            size: 22,
+                                          ),
+                                          Text(
+                                            '  10:00 AM',
+                                            style: TextStyle(
+                                              color:
+                                                  Colors.white.withOpacity(0.5),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: height * 0.035),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Add Break'),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: AppColors.mainRed,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: height * 0.035),
+                        Break(),
+                        SizedBox(height: height * 0.035),
+                        Break(),
+                        SizedBox(height: height * 0.035),
+                        Frequency(),
+                        SizedBox(height: height * 0.035),
+                        CustomFrequency(),
                         SizedBox(height: height * 0.045),
-                        TimeRow(time: '8 AM', color: Colors.white),
-                        SizedBox(height: height * 0.025),
-                        TimeRow(time: '9 AM', color: Color(0xff00CBFF)),
-                        SizedBox(height: height * 0.025),
-                        TimeRow(time: '10 AM', color: Color(0xff00CBFF)),
-                        SizedBox(height: height * 0.025),
-                        TimeRow(time: '11 AM', color: Color(0xff00CBFF)),
-                        SizedBox(height: height * 0.025),
-                        TimeRow(time: '12 PM', color: Color(0xff00CBFF)),
-                        SizedBox(height: height * 0.025),
-                        TimeRow(time: '2 PM', color: Color(0xff00CBFF)),
-                        SizedBox(height: height * 0.025),
-                        TimeRow(time: '3 PM', color: Color(0xff00CBFF)),
-                        SizedBox(height: height * 0.025),
-                        TimeRow(time: '5 PM', color: Color(0xff00CBFF)),
-                        SizedBox(height: height * 0.025),
-                        TimeRow(time: '6 PM', color: Colors.white),
-                        SizedBox(height: height * 0.025),
-                        TimeRow(time: '7 PM', color: Colors.white),
-                        SizedBox(height: height * 0.025),
-                        SizedBox(height: height * 0.07),
                         GestureDetector(
                           // onTap: () {
                           //   Get.to(RegistrationScreen2());
@@ -239,6 +294,361 @@ class CreateScheduleScreen extends StatelessWidget {
               )
             ],
           )),
+    );
+  }
+}
+
+class Frequency extends StatelessWidget {
+  RxBool expanded = false.obs;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: AppColors.backgroundTiles,
+        border: Border.all(
+          color: Colors.white.withOpacity(0.1),
+        ),
+      ),
+      child: ExpansionTile(
+        onExpansionChanged: (v) {
+          expanded.value = v;
+        },
+        collapsedTextColor: Colors.white,
+        trailing: Obx(
+          () => Icon(
+            expanded.isTrue ? Icons.arrow_upward : Icons.arrow_downward_sharp,
+            color:
+                expanded.isTrue ? Colors.white : Colors.white.withOpacity(0.5),
+          ),
+        ),
+        title: Obx(
+          () => Row(
+            children: [
+              Icon(
+                Icons.timeline,
+                color: expanded.isTrue
+                    ? Colors.white
+                    : Colors.white.withOpacity(0.5),
+                size: 22,
+              ),
+              Text(
+                '  Weekly',
+                style: TextStyle(
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.bold,
+                  color: expanded.isTrue
+                      ? Colors.white
+                      : Colors.white.withOpacity(0.5),
+                ),
+              ),
+            ],
+          ),
+        ),
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Daily',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                Divider(
+                  color: Colors.white.withOpacity(0.3),
+                  height: 30,
+                ),
+                Text(
+                  'Weekly',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                Divider(
+                  color: Colors.white.withOpacity(0.3),
+                  height: 30,
+                ),
+                Text(
+                  'Monthly',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                Divider(
+                  color: Colors.white.withOpacity(0.3),
+                  height: 30,
+                ),
+                Text(
+                  'Yearly',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CustomFrequency extends StatelessWidget {
+  RxBool expanded = false.obs;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: AppColors.backgroundTiles,
+        border: Border.all(
+          color: Colors.white.withOpacity(0.1),
+        ),
+      ),
+      child: ExpansionTile(
+        onExpansionChanged: (v) {
+          expanded.value = v;
+        },
+        collapsedTextColor: Colors.white,
+        trailing: Obx(
+          () => Icon(
+            expanded.isTrue ? Icons.arrow_upward : Icons.arrow_downward_sharp,
+            color:
+                expanded.isTrue ? Colors.white : Colors.white.withOpacity(0.5),
+          ),
+        ),
+        title: Obx(
+          () => Text(
+            '  Custom',
+            style: TextStyle(
+              fontSize: 14.0,
+              fontWeight: FontWeight.bold,
+              color: expanded.isTrue
+                  ? Colors.white
+                  : Colors.white.withOpacity(0.5),
+            ),
+          ),
+        ),
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Daily',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                Divider(
+                  color: Colors.white.withOpacity(0.3),
+                  height: 30,
+                ),
+                Text(
+                  'Weekly',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Break extends StatelessWidget {
+  RxBool expanded = false.obs;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.3),
+        ),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Break 1'),
+              Icon(
+                Icons.clear,
+                color: AppColors.mainRed,
+                size: 20,
+              ),
+            ],
+          ),
+          SizedBox(height: 10),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: AppColors.backgroundTiles,
+              border: Border.all(
+                color: Colors.white.withOpacity(0.1),
+              ),
+            ),
+            child: ExpansionTile(
+              onExpansionChanged: (v) {
+                expanded.value = v;
+              },
+              collapsedTextColor: Colors.white,
+              trailing: Obx(
+                () => Icon(
+                  expanded.isTrue
+                      ? Icons.arrow_upward
+                      : Icons.arrow_downward_sharp,
+                  color: expanded.isTrue
+                      ? Colors.white
+                      : Colors.white.withOpacity(0.5),
+                ),
+              ),
+              title: Obx(
+                () => Row(
+                  children: [
+                    Icon(
+                      Icons.access_time_outlined,
+                      color: expanded.isTrue
+                          ? Colors.white
+                          : Colors.white.withOpacity(0.5),
+                      size: 22,
+                    ),
+                    Text(
+                      '  First',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.bold,
+                        color: expanded.isTrue
+                            ? Colors.white
+                            : Colors.white.withOpacity(0.5),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'First',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      Divider(
+                        color: Colors.white.withOpacity(0.3),
+                        height: 30,
+                      ),
+                      Text(
+                        'Second',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      Divider(
+                        color: Colors.white.withOpacity(0.3),
+                        height: 30,
+                      ),
+                      Text(
+                        'Third',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      Divider(
+                        color: Colors.white.withOpacity(0.3),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 25),
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Break Start'),
+                    SizedBox(height: 10),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: AppColors.backgroundTiles,
+                        border: Border.all(
+                          color: Colors.white.withOpacity(0.1),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 20, 0, 20),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.access_time_outlined,
+                              color: Colors.white.withOpacity(0.5),
+                              size: 20,
+                            ),
+                            Text('  10:00 AM'),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(width: 15),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Break End'),
+                    SizedBox(height: 10),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: AppColors.backgroundTiles,
+                        border: Border.all(
+                          color: Colors.white.withOpacity(0.1),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 20, 0, 20),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.access_time_outlined,
+                              color: Colors.white.withOpacity(0.5),
+                              size: 20,
+                            ),
+                            Text('  10:00 AM'),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }

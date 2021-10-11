@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scheduling_app/models/service.dart';
+import 'package:scheduling_app/screens/create_service_screen.dart';
 import 'package:scheduling_app/styles/colors.dart';
 
 class ServicesScreen extends StatelessWidget {
@@ -38,9 +39,10 @@ class ServicesScreen extends StatelessWidget {
                     children: [
                       SizedBox(height: height * 0.04),
                       Padding(
-                        padding: const EdgeInsets.only(left: 20),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
                         child: Container(
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               GestureDetector(
                                 onTap: () {
@@ -64,13 +66,22 @@ class ServicesScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(width: width * 0.22),
                               Text(
                                 'Services',
                                 style: TextStyle(
                                   fontSize: 20,
                                 ),
-                              )
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.to(CreateServiceScreen());
+                                },
+                                child: Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                  size: 28,
+                                ),
+                              ),
                             ],
                           ),
                         ),

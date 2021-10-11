@@ -4,8 +4,12 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:scheduling_app/screens/bottomBarScreens/create_schedule_screen.dart';
+import 'package:scheduling_app/screens/bottomBarScreens/services_screen.dart';
 import 'package:scheduling_app/styles/colors.dart';
 import 'package:scheduling_app/widgets/drawer.dart';
+
+import 'notifications_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -80,12 +84,17 @@ class ProfileScreen extends StatelessWidget {
                                   fontSize: 18,
                                 ),
                               ),
-                              Container(
-                                margin: EdgeInsets.only(right: 20),
-                                child: Icon(
-                                  Icons.notifications,
-                                  color: Colors.white,
-                                  size: 32,
+                              GestureDetector(
+                                onTap: () {
+                                  Get.to(NotificationsScreen());
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 20),
+                                  child: Icon(
+                                    Icons.notifications,
+                                    color: Colors.white,
+                                    size: 32,
+                                  ),
                                 ),
                               ),
                             ],
@@ -152,15 +161,50 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             SizedBox(height: height * 0.025),
                             Gallery(),
+                            SizedBox(height: height * 0.095),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Services',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    letterSpacing: -0.3,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.to(ServicesScreen());
+                                  },
+                                  child: Text(
+                                    'View',
+                                    style: TextStyle(
+                                      color: AppColors.mainRed,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                             SizedBox(height: height * 0.015),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   'Weekly Schedule',
                                   style: TextStyle(
                                     fontSize: 16,
                                     letterSpacing: -0.3,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.to(CreateScheduleScreen());
+                                  },
+                                  child: Text(
+                                    'Edit',
+                                    style: TextStyle(
+                                      color: AppColors.mainRed,
+                                    ),
                                   ),
                                 ),
                               ],

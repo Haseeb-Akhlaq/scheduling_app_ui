@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:scheduling_app/models/service.dart';
+import 'package:scheduling_app/screens/bottomBarScreens/services_screen.dart';
 import 'package:scheduling_app/styles/colors.dart';
+import 'package:scheduling_app/week_calenders/weekly_calender.dart';
 import 'package:scheduling_app/widgets/drawer.dart';
 
 class NewAppointmentScreen extends StatefulWidget {
@@ -252,10 +254,15 @@ class _NewAppointmentScreenState extends State<NewAppointmentScreen> {
                                         fontSize: height * 0.025,
                                       ),
                                     ),
-                                    Icon(
-                                      Icons.add_box_outlined,
-                                      size: 30,
-                                      color: AppColors.mainRed,
+                                    GestureDetector(
+                                      onTap: () {
+                                        Get.to(ServicesScreen());
+                                      },
+                                      child: Icon(
+                                        Icons.add_box_outlined,
+                                        size: 30,
+                                        color: AppColors.mainRed,
+                                      ),
                                     )
                                   ],
                                 ),
@@ -296,22 +303,22 @@ class _NewAppointmentScreenState extends State<NewAppointmentScreen> {
                               ],
                             ),
                           ),
-                          // Padding(
-                          //   padding: const EdgeInsets.only(left: 10),
-                          //   child: Container(
-                          //     child: CalendarTimeline(
-                          //       initialDate: DateTime(2020, 4, 20),
-                          //       firstDate: DateTime(2019, 1, 15),
-                          //       lastDate: DateTime(2020, 11, 20),
-                          //       onDateSelected: (date) => print(date),
-                          //       leftMargin: 10,
-                          //       dayColor: Colors.white,
-                          //       activeDayColor: Colors.white,
-                          //       activeBackgroundDayColor: AppColors.mainRed,
-                          //       locale: 'en_ISO',
-                          //     ),
-                          //   ),
-                          // ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Container(
+                              child: CalendarTimeline(
+                                initialDate: DateTime(2020, 4, 20),
+                                firstDate: DateTime(2019, 1, 15),
+                                lastDate: DateTime(2020, 11, 20),
+                                onDateSelected: (date) => print(date),
+                                leftMargin: 10,
+                                dayColor: Colors.white,
+                                activeDayColor: Colors.white,
+                                activeBackgroundDayColor: AppColors.mainRed,
+                                locale: 'en_ISO',
+                              ),
+                            ),
+                          ),
                           SizedBox(height: height * 0.035),
                           Obx(
                             () => Padding(
@@ -851,9 +858,10 @@ class ServicesContainer2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 90,
       alignment: Alignment.center,
       child: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(12.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -861,7 +869,7 @@ class ServicesContainer2 extends StatelessWidget {
               children: [
                 Positioned(
                     bottom: 0,
-                    right: 0,
+                    right: -1,
                     child: Text(
                       service!.time!,
                       style: TextStyle(
@@ -870,15 +878,15 @@ class ServicesContainer2 extends StatelessWidget {
                       ),
                     )),
                 Container(
-                  width: 50,
-                  height: 50,
+                  width: 45,
+                  height: 45,
                   child: Image.asset(
                     'assets/images/dummyService.png',
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 14),
+            SizedBox(height: 12),
             Text(
               service!.serviceName!,
               style: TextStyle(

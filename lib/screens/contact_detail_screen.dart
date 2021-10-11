@@ -6,6 +6,7 @@ import 'package:scheduling_app/styles/colors.dart';
 import 'package:scheduling_app/widgets/drawer.dart';
 
 import 'bottomBarScreens/new_appointment_screen.dart';
+import 'bottomBarScreens/services_screen.dart';
 
 class ContactsDetailScreen extends StatefulWidget {
   @override
@@ -16,6 +17,20 @@ class _ContactsDetailScreenState extends State<ContactsDetailScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   var sliderValue = 10.0.obs;
   var weekPopUp = '2 Weeks'.obs;
+
+  List services = [
+    Service(time: '25', serviceName: 'Dummy Service'),
+    Service(time: '45', serviceName: 'Dummy Service'),
+    Service(time: '15', serviceName: 'Dummy Service'),
+  ].obs;
+
+  var editMode = false.obs;
+
+  addNewService(Service s) {
+    services.add(s);
+  }
+
+  TextEditingController notesController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +60,19 @@ class _ContactsDetailScreenState extends State<ContactsDetailScreen> {
                         size: 20,
                       ),
                     ),
-                    Text(
-                      'Edit',
-                      style: TextStyle(
-                        color: AppColors.mainRed,
+                    Obx(
+                      () => GestureDetector(
+                        onTap: () {
+                          editMode.value = !editMode.value;
+                        },
+                        child: Text(
+                          editMode.isTrue ? 'Done' : 'Edit',
+                          style: TextStyle(
+                            color: editMode.isTrue
+                                ? Colors.white
+                                : AppColors.mainRed,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -89,34 +113,79 @@ class _ContactsDetailScreenState extends State<ContactsDetailScreen> {
                   ],
                 ),
                 SizedBox(height: height * 0.03),
-                Container(
-                  width: double.infinity,
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Services',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
+                Obx(
+                  () => Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          width: double.infinity,
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Services',
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ),
+                      editMode.isTrue
+                          ? GestureDetector(
+                              onTap: () {
+                                Get.to(ServicesScreen());
+                              },
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                            )
+                          : Container()
+                    ],
                   ),
                 ),
-                SizedBox(height: 10),
-                Row(
-                  children: [
-                    ServicesContainer2(
-                      service:
-                          Service(time: '45', serviceName: 'Dummy Service'),
-                    ),
-                    SizedBox(width: 10),
-                    ServicesContainer2(
-                      service:
-                          Service(time: '25', serviceName: 'Dummy Service'),
-                    ),
-                    SizedBox(width: 10),
-                    ServicesContainer2(
-                      service:
-                          Service(time: '15', serviceName: 'Dummy Service'),
-                    ),
-                  ],
+                SizedBox(height: 15),
+                Obx(
+                  () => Container(
+                    height: services.isEmpty ? 0 : 115,
+                    child: ListView.separated(
+                        itemCount: services.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Obx(() => Stack(
+                                clipBehavior: Clip.none,
+                                children: [
+                                  ServicesContainer2(
+                                    service: services[index],
+                                  ),
+                                  editMode.isTrue
+                                      ? Positioned(
+                                          top: 0,
+                                          right: -3,
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              services.removeAt(index);
+                                            },
+                                            child: Container(
+                                              padding: EdgeInsets.all(2),
+                                              decoration: BoxDecoration(
+                                                color: AppColors.mainRed,
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Icon(
+                                                Icons.clear,
+                                                color: Colors.white,
+                                                size: 13,
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      : Container()
+                                ],
+                              ));
+                        },
+                        separatorBuilder: (context, index) {
+                          return SizedBox(width: 10);
+                        }),
+                  ),
                 ),
                 SizedBox(height: 25),
                 Container(
@@ -242,14 +311,22 @@ class _ContactsDetailScreenState extends State<ContactsDetailScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: height * 0.02),
-                Container(
-                  width: double.infinity,
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam',
-                    style: TextStyle(
-                      fontSize: 14,
+                Obx(
+                  () => Container(
+                    width: double.infinity,
+                    alignment: Alignment.centerLeft,
+                    child: TextFormField(
+                      maxLines: null,
+                      enabled: editMode.value,
+                      initialValue:
+                          'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                      ),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                      ),
                     ),
                   ),
                 ),
